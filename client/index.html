@@ -11,7 +11,7 @@
     
     <h1 class="text-center">Negociações</h1>
     
-    <form class="form" data-tipo="form">
+    <form class="form" data-tipo="form" onsubmit="negociacaoController.adiciona(event)">
         
         <div class="form-group">
             <label for="data">Data</label>
@@ -20,7 +20,7 @@
         
         <div class="form-group">
             <label for="quantidade">Quantidade</label>
-            <input type="number" min="1" step="1" id="quantidade" data-tipo="qunatidade" class="form-control" value="1" required/>
+            <input type="number" min="1" step="1" id="quantidade" data-tipo="quantidade" class="form-control" value="1" required/>
         </div>
         
         <div class="form-group">
@@ -60,22 +60,9 @@
     </table>
 
 <script src="./js/app/models/Negociacao.js"></script>
+<script src="./js/app/controllers/NegociacaoController.js"></script>
 <script>
-
-    var n1 = new Negociacao(new Date(), 5, 700);
-    
-    console.log(Object.isFrozen(n1))
-    Object.freeze(n1)
-    console.log(Object.isFrozen(n1))
-    console.log(n1.data);
-    console.log(n1.quantidade);
-    console.log(n1.valor);
-    console.log(n1.volume);
-
-
-    
-
-</script> 
-
+    let negociacaoController = new NegociacaoController();
+</script>
 </body>
 </html>
