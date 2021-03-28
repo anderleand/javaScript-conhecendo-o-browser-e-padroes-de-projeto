@@ -16,22 +16,29 @@ class NegociacaoController {
         console.log(this._inputQuantidade.value);
         console.log(this._inputValor.value);
 
-        let data = new Date(...
-            this._inputData.value
-            .split('-')
-            .map((item, indice) => item - indice % 2)
-        );
+        
         //let data = new Date(this._inputData.value.replace(/-/g, ','));
+        let helper = new DateHelper()
+        helper.textoParaData(this._inputData.value);
 
         let negociacao = new Negociacao(
-            data,
+        helper.textoParaData(this._inputData.value);
+        ,
             this._inputQuantidade.value,
             this._inputValor.value
         );
-        console.log(data);
-        console.log(negociacao);
-        //adicionar a negociacao em uma lista
 
+        
+        console.log(negociacao);
+        console.log(helper.dataParaTexto(negociacao.data));
+        
+        this._inputData.value = ''
+        this._inputQuantidade.value = '1'
+        this._inputValor.value ='0.0'
+        
+        this._inputData.focus()
+        
+        //adicionar a negociacao em uma lista
     }
 
 
@@ -49,24 +56,23 @@ class NegociacaoController {
 
 
 
-    // adiciona(event) {
-    //     event.preventDefault();
-
+    // constructor() {
+    //   
     //         let inputs = document.querySelectorAll('input');
     //         console.log(inputs);
     //         inputs.forEach((input) => {
     //             let tipoDeInput = input.dataset.tipo
 
     //             if (tipoDeInput === 'data') {
-    //                 this.inputData = input.value
+    //                 this.inputData = input
     //             } else if (tipoDeInput === 'quantidade') {
-    //                 this.inputQuantidade = input.value
+    //                 this.inputQuantidade = input
     //             } else if (tipoDeInput === 'valor') {
-    //                 this.inputValor = input.value
+    //                 this.inputValor = input
     //             }
     //         })
-    //         console.log(this.inputData);
-    //         console.log(this.inputQuantidade);
-    //         console.log(this.inputValor);
+    //         console.log(this.inputData.value);
+    //         console.log(this.inputQuantidade.value);
+    //         console.log(this.inputValor.value);
     // }
 }
