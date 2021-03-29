@@ -6,9 +6,16 @@ class NegociacaoController {
         this._inputData = $('[data-tipo="data"]');
         this._inputQuantidade = $('[data-tipo="quantidade"]');
         this._inputValor = $('[data-tipo="valor"]');
+
         this._listaNegociacoes = new ListaNegociacoes();
         this._negociacoesView= new NegociacoesView($('[data-tipo="negociacoesView'));
-        this._negociacoesView.update(this._listaNegociacoes)
+        this._negociacoesView.update(this._listaNegociacoes);
+        
+        this._mensagem = new Mensagem();
+        this._mensagemView = new MensagemView($('[data-tipo="mensagemView'));
+        this._mensagemView.update(this._mensagem)
+
+
 
     }
 
@@ -19,9 +26,13 @@ class NegociacaoController {
         // let helper = new DateHelper()
         // helper.textoParaData(this._inputData.value);
 
-        this._listaNegociacoes.adiciona(this._criaNegociacao())
-        this._negociacoesView.update(this._listaNegociacoes)
-        this._limpaFormulario()
+        this._listaNegociacoes.adiciona(this._criaNegociacao());
+        this._negociacoesView.update(this._listaNegociacoes);
+
+        this._mensagem.texto = 'Negociação adicionada com sucesso!';
+        this._mensagemView.update(this._mensagem)
+
+        this._limpaFormulario();
 
         console.log(this._listaNegociacoes.negociacoes)
         // console.log(this._inputData.value);
