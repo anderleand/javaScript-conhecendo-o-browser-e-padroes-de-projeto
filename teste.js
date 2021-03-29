@@ -4,3 +4,8 @@ console.log(novosNumeros);
 
 
 //array.map(function(currentValue, index, arr), thisValue)
+
+
+let dobro = numeros.map(num => num * 2);
+let metade = numeros.map(num => num/2);
+let raiz = numeros.map(num => Math.sqrt(num);
