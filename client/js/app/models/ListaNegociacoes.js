@@ -1,6 +1,6 @@
 class ListaNegociacoes {
 
-    constructor(armadilha) {
+    constructor(armadilha) {    //Recebe a 'armadilha' através de uma arrow function em MegociacaoController.js 
         this._negociacoes = [];
         this._armadilha = armadilha;
 
