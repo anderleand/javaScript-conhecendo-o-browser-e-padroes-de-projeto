@@ -37,6 +37,7 @@ class HttpService {
                     if (xhr.status == 200) {
 
                         resolve(JSON.parse(xhr.responseText));
+                        alert('Negociação enviada com sucesso');
                     } else {
 
                         reject(xhr.responseText);
@@ -47,5 +48,5 @@ class HttpService {
         });
 
     }
-    
+
 }
