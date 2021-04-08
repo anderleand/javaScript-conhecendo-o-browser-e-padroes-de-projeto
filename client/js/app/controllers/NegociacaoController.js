@@ -6,6 +6,7 @@ class NegociacaoController {
     this._inputData = $('[data-tipo="data"]');
     this._inputQuantidade = $('[data-tipo="quantidade"]');
     this._inputValor = $('[data-tipo="valor"]');
+    this._ordemAtual = '';
 
     // this._listaNegociacoes = new ListaNegociacoes(model => 
     //     this._negociacoesView.update(model));
@@ -14,7 +15,7 @@ class NegociacaoController {
     this._listaNegociacoes = new Bind(
       new ListaNegociacoes(),
       new NegociacoesView($('[data-tipo="negociacoesView')),
-      'adiciona', 'esvazia');
+      'adiciona', 'esvazia', 'ordena', 'inverteOrdem');
 
     // this._listaNegociacoes = ProxyFactory.create(
     //     new ListaNegociacoes(),
@@ -61,12 +62,12 @@ class NegociacaoController {
 
     let service = new NegociacaoService();
     service
-    .obterNegociacoes()
-    .then(negociacoes => {
-      negociacoes.forEach(negociacao => this._listaNegociacoes.adiciona(negociacao));
-      this._mensagem.texto = 'Negociações do período importadas com sucesso';
-    })
-    .catch(error => this._mensagem.texto = error);  
+      .obterNegociacoes()
+      .then(negociacoes => {
+        negociacoes.forEach(negociacao => this._listaNegociacoes.adiciona(negociacao));
+        this._mensagem.texto = 'Negociações do período importadas com sucesso';
+      })
+      .catch(error => this._mensagem.texto = error);
 
 
     /*
@@ -122,6 +123,17 @@ class NegociacaoController {
     //   negociacoes.forEach(negociacao => this._listaNegociacoes.adiciona(negociacao));
     //   this._mensagem.texto = 'Negociações importadas com sucesso';
     // });
+  }
+
+  ordena(coluna) {
+    console.log(`Método ordena`);
+
+    if (this._ordemAtual == coluna) {
+      this._listaNegociacoes.inverteOrdem();
+    } else {
+      this._listaNegociacoes.ordena((a, b) => a[coluna] - b[coluna]);
+    }
+    this._ordemAtual = coluna;
   }
 
   apaga() {
