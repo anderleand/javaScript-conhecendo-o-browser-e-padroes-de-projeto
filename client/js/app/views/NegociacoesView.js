@@ -1,14 +1,15 @@
 class NegociacoesView extends View {
-
+    
     constructor(elemento) {
-
+        
         super(elemento);
     }
-
+    
     template(model) {
-
+        
         return `
         <table class="table table-hover table-bordered">
+        
             <thead>
                 <tr>
                     <th onclick="negociacaoController.ordena('data')">DATA</th>
@@ -34,7 +35,7 @@ class NegociacoesView extends View {
             <tfoot>
                 <td colspan="3"></td>
                 <td>
-                ${model.volumeTotal}
+                    ${model.volumeTotal}
                 </td>
             </tfoot>
             
